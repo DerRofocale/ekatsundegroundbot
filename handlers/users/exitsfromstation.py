@@ -4,6 +4,8 @@ from aiogram.dispatcher import FSMContext
 from keyboards.default.startdefkey import startkeyboard, stationskeyboard
 from keyboards.inline.sheduleinlkey import shedulekeyboard
 from loader import dp, bot
+from media.strings import IMGYanDiskSheme1, IMGYanDiskSheme2, IMGYanDiskSheme3, IMGYanDiskSheme4, IMGYanDiskSheme5, \
+    IMGYanDiskSheme6, IMGYanDiskSheme7, IMGYanDiskSheme8, IMGYanDiskSheme9
 from states.exitsfromstationstates import ExitsFromStation
 from media.getimage import GetImage
 
@@ -19,53 +21,53 @@ async def exts(message: types.Message):
 
 @dp.message_handler(text="Проспект Космонавтов", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/1-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme1, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Уралмаш", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/2-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme2, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Машиностроителей", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/3-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme3, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Уральская", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/4-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme4, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Динамо", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/5-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme5, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Площадь 1905 года", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/6-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme6, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Геологическая", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/7-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme7, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Чкаловская", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/8-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme8, reply_markup=startkeyboard)
     await state.finish()
 
 
 @dp.message_handler(text="Ботаническая", state=ExitsFromStation.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer_photo(await GetImage("shemaexits/9-1.jpg"), reply_markup=startkeyboard)
+    await message.answer_photo(IMGYanDiskSheme9, reply_markup=startkeyboard)
     await state.finish()
