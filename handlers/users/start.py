@@ -13,6 +13,7 @@ from bdateutil import isbday
 from aiogram.dispatcher.filters import Command, Text, state
 from aiogram.dispatcher import FSMContext
 from media.getimage import GetImage
+from media.strings import IMGYanDiskLogo
 from shedules.weekdaysfrom1to9 import fromst1tost9weekday
 from states.exitsfromstationstates import ExitsFromStation
 from states.soontrainstates import SoonTrain
@@ -29,7 +30,7 @@ async def bot_start(message: types.Message):
         "Пользуйзя кнопками снизу 👇🏻",
         "Если нужна дополнительная информация, пиши /help"
     ]
-    await message.answer_photo(await GetImage("logo.jpg"), "\n".join(text),
+    await message.answer_photo(IMGYanDiskLogo, "\n".join(text),
                                parse_mode=types.ParseMode.HTML, reply_markup=startkeyboard)
 
 
@@ -88,45 +89,3 @@ async def cmnd(message: types.Message):
 #         await ADMPNL.AddNewAdmin2.set()
 #     else:
 #         await message.answer("Некорректный Telegram ID.\nПопробуйте ещё раз.\nОн должен состоять только из цифр.")
-
-
-
-
-
-
-@dp.message_handler(text="ABOBA?")
-async def getmenu(message: types.Message):
-    if datetime.time(0, 0) < datetime.datetime.now().time() < datetime.time(6, 00): # СМОТРИМ ТОЛЬКО НОЧЬ ПРЕДЫДУЩЕГО ДНЯ
-        if datetime.datetime.today().isoweekday() == 1:
-            print("1 Смотрим на ВЫХОДНОЙ")
-        elif datetime.datetime.today().isoweekday() == 2:
-            print("2 Смотрим на БУДНИЙ")
-        elif datetime.datetime.today().isoweekday() == 4:
-            print("3 Смотрим на БУДНИЙ")
-            for admin in fromst1tost9weekday:
-                if admin > datetime.datetime.now().time() > datetime.time(0, 30):
-                    print(f"{admin.hour}:{admin.minute}:{admin.second}")
-                    now = datetime.datetime(year=2022, month=4, day=13, hour=admin.hour, minute=admin.minute, second=admin.second)
-                    till_ten_hours_fifteen_minutes = now - datetime.timedelta(hours=datetime.datetime.now().hour, minutes=datetime.datetime.now().minute, seconds=datetime.datetime.now().second)
-                    print(till_ten_hours_fifteen_minutes)
-                    text = [
-                        "<code>Станция отправления:</code> Уралмаш",
-                        "<code>В сторону станции:</code> Проспект Космонавтов",
-                        "",
-                        f"<code>До прибытия поезда:</code> {till_ten_hours_fifteen_minutes.minute} МИН {till_ten_hours_fifteen_minutes.second} С",
-                    ]
-                    await message.answer_photo(await DrawTime(till_ten_hours_fifteen_minutes), "\n".join(text), parse_mode=types.ParseMode.HTML)
-                    break
-                elif admin is fromst1tost9weekday[-1]:
-                    await message.answer_photo(await GetImage("closed.jpg"), f"Все станции метрополитена уже закрыты.")
-        elif datetime.datetime.today().isoweekday() == 4:
-            print("4 Смотрим на БУДНИЙ")
-        elif datetime.datetime.today().isoweekday() == 5:
-            print("5 Смотрим на БУДНИЙ")
-        elif datetime.datetime.today().isoweekday() == 6:
-            print("6 Смотрим на БУДНИЙ")
-        elif datetime.datetime.today().isoweekday() == 7:
-            print("7 Смотрим на ВЫХОДНОЙ")
-    else: # СМОТРИМ СЕГОДНЯШНИЙ ДЕНЬ
-        print("Метро не работает")
-        await message.answer("Метро не работает")
