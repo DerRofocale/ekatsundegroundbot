@@ -124,7 +124,7 @@ fromst5tost1weekend = [datetime.time(6, 9), datetime.time(6, 22), datetime.time(
                        datetime.time(23, 37), datetime.time(23, 46), datetime.time(23, 55), datetime.time(0, 5),
                        datetime.time(0, 14)]
 
-fromst6tost9weekend = [datetime.time(6, 7), datetime.time(6, 21), datetime.time(6, 33), datetime.time(6, 45),
+fromst6tost1weekend = [datetime.time(6, 7), datetime.time(6, 21), datetime.time(6, 33), datetime.time(6, 45),
                        datetime.time(6, 57), datetime.time(7, 8), datetime.time(7, 19), datetime.time(7, 30),
                        datetime.time(7, 39), datetime.time(7, 48), datetime.time(7, 58), datetime.time(8, 7),
                        datetime.time(8, 16), datetime.time(8, 25), datetime.time(8, 34), datetime.time(8, 44),
@@ -155,7 +155,7 @@ fromst6tost9weekend = [datetime.time(6, 7), datetime.time(6, 21), datetime.time(
                        datetime.time(23, 36), datetime.time(23, 45), datetime.time(23, 54), datetime.time(0, 4),
                        datetime.time(0, 13)]
 
-fromst7tost9weekend = [datetime.time(6, 5), datetime.time(6, 19), datetime.time(6, 31), datetime.time(6, 43),
+fromst7tost1weekend = [datetime.time(6, 5), datetime.time(6, 19), datetime.time(6, 31), datetime.time(6, 43),
                        datetime.time(6, 55), datetime.time(7, 6), datetime.time(7, 17), datetime.time(7, 28),
                        datetime.time(7, 37), datetime.time(7, 46), datetime.time(7, 56), datetime.time(8, 5),
                        datetime.time(8, 14), datetime.time(8, 23), datetime.time(8, 32), datetime.time(8, 42),
@@ -186,7 +186,7 @@ fromst7tost9weekend = [datetime.time(6, 5), datetime.time(6, 19), datetime.time(
                        datetime.time(23, 34), datetime.time(23, 43), datetime.time(23, 52), datetime.time(0, 2),
                        datetime.time(0, 11)]
 
-fromst8tost9weekend = [datetime.time(6, 1), datetime.time(6, 15), datetime.time(6, 27), datetime.time(6, 39),
+fromst8tost1weekend = [datetime.time(6, 1), datetime.time(6, 15), datetime.time(6, 27), datetime.time(6, 39),
                        datetime.time(6, 51), datetime.time(7, 2), datetime.time(7, 13), datetime.time(7, 24),
                        datetime.time(7, 33), datetime.time(7, 42), datetime.time(7, 52), datetime.time(8, 1),
                        datetime.time(8, 10), datetime.time(8, 19), datetime.time(8, 28), datetime.time(8, 38),
