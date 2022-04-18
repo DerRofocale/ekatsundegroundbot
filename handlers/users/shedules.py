@@ -1,9 +1,12 @@
 import asyncio
 import datetime
+from contextlib import suppress
 from datetime import date
 from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
+
 from database.dbutils import AddNewUser
 from keyboards.default.startdefkey import startkeyboard, stationskeyboard, towherekeyboard
 from keyboards.inline.sheduleinlkey import shedulekeyboard
@@ -18,69 +21,113 @@ from media.getimage import GetImage
 from shedules.weekdaysfrom1to9 import fromst1tost9weekday
 from states.soontrainstates import SoonTrain
 
+async def delete_message(message: types.Message, sleep_time: int = 0):
+    await asyncio.sleep(sleep_time)
+    with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
+        await message.delete()
+
+
 
 @dp.message_handler(text="Ближайший поезд", state=None)
-async def exts(message: types.Message):
+async def exts(message: types.Message, state: FSMContext):
     text = [
         "Пожалуйста, выберите станцию",
     ]
-    await message.answer("\n".join(text), reply_markup=stationskeyboard, parse_mode=types.ParseMode.HTML)
+    msg = await message.answer("\n".join(text), reply_markup=stationskeyboard, parse_mode=types.ParseMode.HTML)
     await SoonTrain.TakeStation.set()
-
+    asyncio.create_task(delete_message(message, 0))
+    await state.update_data(MessageForDelete=msg)
 
 #######################################################################################################################
 @dp.message_handler(text="Проспект Космонавтов", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
     await message.answer_photo(photo=await DrawTime(1, 9), reply_markup=startkeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    asyncio.create_task(delete_message(message, 0))
     await state.finish()
-
 
 @dp.message_handler(text="Уралмаш", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
-
+    msg = await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    await state.update_data(MessageForDeleteTwo=msg)
+    asyncio.create_task(delete_message(message, 0))
     await state.update_data(FromStation=2)
     await SoonTrain.TakeToWhere.set()
 
 
 @dp.message_handler(text="Машиностроителей", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    msg = await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    await state.update_data(MessageForDeleteTwo=msg)
+    asyncio.create_task(delete_message(message, 0))
     await state.update_data(FromStation=3)
     await SoonTrain.TakeToWhere.set()
 
 
 @dp.message_handler(text="Уральская", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    msg = await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    await state.update_data(MessageForDeleteTwo=msg)
+    asyncio.create_task(delete_message(message, 0))
     await state.update_data(FromStation=4)
     await SoonTrain.TakeToWhere.set()
 
 
 @dp.message_handler(text="Динамо", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    msg = await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    await state.update_data(MessageForDeleteTwo=msg)
+    asyncio.create_task(delete_message(message, 0))
     await state.update_data(FromStation=5)
     await SoonTrain.TakeToWhere.set()
 
 
 @dp.message_handler(text="Площадь 1905 года", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    msg = await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    await state.update_data(MessageForDeleteTwo=msg)
+    asyncio.create_task(delete_message(message, 0))
     await state.update_data(FromStation=6)
     await SoonTrain.TakeToWhere.set()
 
 
 @dp.message_handler(text="Геологическая", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    msg = await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    await state.update_data(MessageForDeleteTwo=msg)
+    asyncio.create_task(delete_message(message, 0))
     await state.update_data(FromStation=7)
     await SoonTrain.TakeToWhere.set()
 
 
 @dp.message_handler(text="Чкаловская", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    msg = await message.answer("Пожалуйста, выберите направление", reply_markup=towherekeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    await state.update_data(MessageForDeleteTwo=msg)
+    asyncio.create_task(delete_message(message, 0))
     await state.update_data(FromStation=8)
     await SoonTrain.TakeToWhere.set()
 
@@ -88,6 +135,10 @@ async def exts(message: types.Message, state: FSMContext):
 @dp.message_handler(text="Ботаническая", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
     await message.answer_photo(photo=await DrawTime(9, 1), reply_markup=startkeyboard)
+    data = await state.get_data()
+    MFD = data.get("MessageForDelete")
+    asyncio.create_task(delete_message(MFD, 0))
+    asyncio.create_task(delete_message(message, 0))
     await state.finish()
 
 
@@ -96,6 +147,9 @@ async def exts(message: types.Message, state: FSMContext):
 async def exts(message: types.Message, state: FSMContext):
     data = await state.get_data()
     FRMST = data.get("FromStation")
+    MFD = data.get("MessageForDeleteTwo")
+    asyncio.create_task(delete_message(MFD, 0))
+    asyncio.create_task(delete_message(message, 0))
     await message.answer_photo(photo=await DrawTime(FRMST, 1), reply_markup=startkeyboard)
     await state.finish()
 
@@ -104,6 +158,9 @@ async def exts(message: types.Message, state: FSMContext):
 async def exts(message: types.Message, state: FSMContext):
     data = await state.get_data()
     FRMST = data.get("FromStation")
+    MFD = data.get("MessageForDeleteTwo")
+    asyncio.create_task(delete_message(MFD, 0))
+    asyncio.create_task(delete_message(message, 0))
     await message.answer_photo(photo=await DrawTime(FRMST, 9), reply_markup=startkeyboard)
     await state.finish()
 
