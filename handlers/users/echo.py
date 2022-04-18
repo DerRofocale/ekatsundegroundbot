@@ -1,6 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 
+from keyboards.default.startdefkey import startkeyboard
 from loader import dp
 
 
@@ -9,7 +10,7 @@ from loader import dp
 
 @dp.message_handler(state=None, content_types=types.ContentType.ANY)
 async def bot_echo(message: types.Message):
-    await message.reply("Я не знаю такую команду :C\nВоспользуйся клавиатурой снизу")
+    await message.reply("Я не знаю такую команду :C\nВоспользуйся клавиатурой снизу", reply_markup=startkeyboard)
 
 
 
