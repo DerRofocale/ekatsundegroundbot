@@ -39,8 +39,7 @@ stationskeyboard = ReplyKeyboardMarkup(
             KeyboardButton(text="Ботаническая"),
         ],
     ],
-    resize_keyboard=True,
-    one_time_keyboard=True
+    resize_keyboard=True
 )
 
 towherekeyboard = ReplyKeyboardMarkup(
@@ -52,6 +51,5 @@ towherekeyboard = ReplyKeyboardMarkup(
             KeyboardButton(text="Ботаническая"),
         ],
     ],
-    resize_keyboard=True,
-    one_time_keyboard=True
+    resize_keyboard=True
 )
