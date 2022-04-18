@@ -41,7 +41,7 @@ async def exts(message: types.Message, state: FSMContext):
 #######################################################################################################################
 @dp.message_handler(text="Проспект Космонавтов", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    imgmsg = await message.answer_photo(photo=await DrawTime(1, 9), caption="Изображение будет удалено чеерез 10 минут", reply_markup=startkeyboard)
+    imgmsg = await message.answer_photo(photo=await DrawTime(1, 9), caption="Изображение будет удалено через 10 минут", reply_markup=startkeyboard)
     data = await state.get_data()
     MFD = data.get("MessageForDelete")
     await asyncio.create_task(delete_message(MFD, 0))
@@ -135,7 +135,7 @@ async def exts(message: types.Message, state: FSMContext):
 
 @dp.message_handler(text="Ботаническая", state=SoonTrain.TakeStation)
 async def exts(message: types.Message, state: FSMContext):
-    imgmsg = await message.answer_photo(photo=await DrawTime(9, 1), caption="Изображение будет удалено чеерез 10 минут", reply_markup=startkeyboard)
+    imgmsg = await message.answer_photo(photo=await DrawTime(9, 1), caption="Изображение будет удалено через 10 минут", reply_markup=startkeyboard)
     data = await state.get_data()
     MFD = data.get("MessageForDelete")
     await asyncio.create_task(delete_message(MFD, 0))
@@ -153,7 +153,7 @@ async def exts(message: types.Message, state: FSMContext):
     MFD = data.get("MessageForDeleteTwo")
     await asyncio.create_task(delete_message(MFD, 0))
     await asyncio.create_task(delete_message(message, 0))
-    imgmsg = await message.answer_photo(photo=await DrawTime(FRMST, 1), caption="Изображение будет удалено чеерез 10 минут", reply_markup=startkeyboard)
+    imgmsg = await message.answer_photo(photo=await DrawTime(FRMST, 1), caption="Изображение будет удалено через 10 минут", reply_markup=startkeyboard)
     await state.finish()
     await asyncio.create_task(delete_message(imgmsg, 600))
 
@@ -165,7 +165,7 @@ async def exts(message: types.Message, state: FSMContext):
     MFD = data.get("MessageForDeleteTwo")
     await asyncio.create_task(delete_message(MFD, 0))
     await asyncio.create_task(delete_message(message, 0))
-    imgmsg = await message.answer_photo(photo=await DrawTime(FRMST, 9), caption="Изображение будет удалено чеерез 10 минут", reply_markup=startkeyboard)
+    imgmsg = await message.answer_photo(photo=await DrawTime(FRMST, 9), caption="Изображение будет удалено через 10 минут", reply_markup=startkeyboard)
     await state.finish()
     await asyncio.create_task(delete_message(imgmsg, 600))
 
