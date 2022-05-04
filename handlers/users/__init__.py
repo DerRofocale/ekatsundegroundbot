@@ -1,3 +1,4 @@
+from . import adimpanel
 from . import help
 from . import shedules
 from . import exitsfromstation

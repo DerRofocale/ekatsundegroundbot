@@ -1,4 +1,1 @@
 BOT_TOKEN = "5293231857:AAGgfmynqmrZnnGRynqj4LWJeJMzLpSDAow"
-IP = "ip"
-
-#135734865
